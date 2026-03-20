@@ -1,12 +1,25 @@
 <template>
-  <main>
-    <article>
+  <Card :style="{width: '100%', minWidth:'200px', maxWidth:'220px'}"
+    class="p-4 shadow-lg rounded-lg">
+    <template #header>
+      <img :src="'https://picsum.photos/200'" 
+      class="w-full object-cover"
+      />
+    </template>
+    <template #title>
       <h1>{{ product.name }}</h1>
-      <p>Preço: R$ {{ product.price.toFixed(2).replace('.', ',') }}</p>
-      <p>Categoria: {{ product.category.title }}</p>
-      <button @click="$emit('add', product)">Adicionar</button>
-    </article>
-  </main>
+    </template>
+    <template #content>
+      <p>{{ product?.description }}</p>
+      <p>R$: {{ product.price.toFixed(2).replace('.', ',') }}</p>
+    </template>
+    <template #footer>
+      <div class='flex flex-row-reverse'>
+        <Button @click="$emit('add', product)" >Adicionar</Button>
+
+      </div>
+    </template>
+  </Card>
 </template>
 
 <script lang="ts">
